@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+/* .closeBtn { */
+/* 	background-color: #fe4c50; */
+/* 	color: #ffffff; */
+/* } */
+
+/* .closeBtn:hover { */
+/* 	border: 1px solid #fe4c50; */
+/* 	text-decoration: none; */
+/* 	background-color: #ffffff; */
+/* 	color: #fe4c50; */
+/* } */
+.searchBtn {
+	border: 1px solid #fe4c50;
+	background-color: #ffffff;
+	color: #fe4c50;
+	width: 100%
+}
+
+.searchBtn:hover {
+	border: 1px solid #fe4c50;
+	text-decoration: none;
+	background-color: #fe4c50;
+	color: #ffffff;
+}
+
+.navbar_menu>li>a:hover {
+	color: #fe4c50 !important;
+}
+
+.navbar_user>li>a:hover {
+	color: #ffffff !important;
+	background-color: #fe4c50 !important;
+	border-radius: 100px !important;
+}

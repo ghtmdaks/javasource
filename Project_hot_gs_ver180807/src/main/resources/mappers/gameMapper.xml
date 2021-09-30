@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="gameMapper">
+
+	<!-- 다운 회수 + 1 -->
+	<update id="downCntUpdate" parameterType="List" >
+		UPDATE game SET downcnt = downcnt + 1 WHERE g_num IN
+		<foreach item="g_num" index="index" collection="list" open="(" separator="," close=")">
+        	#{g_num}
+		</foreach>
+	</update>
+
+	<!-- 추천 게임 리스트 -->
+	<select id="recommendGameList" resultType="GameDTO">
+		SELECT * FROM game g INNER JOIN gamefile gf
+		ON g.g_num = gf.g_num AND gf.kind = 'main'
+		AND recommend = 1
+		ORDER BY downcnt DESC, g_date DESC
+	</select>
+
+	<!-- 세일 게임 리스트 -->
+	<select id="saleGameList" resultType="GameDTO">
+		SELECT * FROM game g INNER JOIN gamefile gf
+		ON g.g_num = gf.g_num AND gf.kind = 'main'
+		AND sale > 0 AND systimestamp BETWEEN saleStartDate AND saleEndDate
+		ORDER BY sale DESC
+	</select>
+
+	<!-- 뉴 게임 리스트 -->
+	<select id="newGameList" resultType="GameDTO">
+		SELECT * FROM
+		(SELECT  ROWNUM r, res.* FROM
+		((SELECT * FROM game g INNER JOIN gamefile gf
+		ON g.g_num = gf.g_num AND gf.kind = 'main'
+        ORDER BY g_date DESC) res))
+		WHERE r BETWEEN 1 AND 10
+	</select>
+
+	<!-- 핫 게임 리스트 -->
+	<select id="hotGameList" resultType="GameDTO">
+		SELECT * FROM
+		(SELECT  ROWNUM r, res.* FROM
+		((SELECT * FROM game g INNER JOIN gamefile gf
+		ON g.g_num = gf.g_num AND gf.kind = 'main'
+        ORDER BY downcnt DESC, g_date DESC) res))
+		WHERE r BETWEEN 1 AND 10
+	</select>
+
+	<select id="curDate" resultType="java.sql.Timestamp">
+		SELECT systimestamp from dual
+	</select>
+
+	<!-- 세일은 없는 일로다!! -->
+	<update id="gameCancelSale" parameterType="Integer" >
+		UPDATE game SET sale = null, salestartdate = null, saleenddate = null
+		WHERE g_num = #{g_num}
+	</update>
+
+	<!-- 게임 세일 -->
+	<update id="gameSale" parameterType="GameDTO">
+		UPDATE game
+		SET sale = #{sale}, saleStartDate = #{saleStartDate}, saleEndDate = #{saleEndDate}
+		WHERE g_num = #{g_num}
+	</update>
+
+	<!-- 추천 게임에서 삭제 -->
+	<update id="gameCancelRecommend" parameterType="Integer">
+		UPDATE game SET recommend = 0 WHERE g_num = #{g_num}
+	</update>
+
+	<!-- 추천 게임으로 지정 -->
+	<update id="gameRecommend" parameterType="Integer">
+		UPDATE game SET recommend = 1 WHERE g_num = #{g_num}
+	</update>
+
+	<!-- 게임 정보 삭제 -->
+	<delete id="delete" parameterType="Integer">
+		DELETE game WHERE g_num = #{g_num}
+	</delete>
+
+	<!-- 게임 정보 수정 -->
+	<update id="update" parameterType="GameDTO">
+		UPDATE game SET g_name = #{g_name}, price = #{price}, g_info = #{g_info}, developer = #{developer}, 
+		publisher = #{publisher}, genre=#{genre}, g_date = #{g_date}, steamAppId = #{steamAppId}
+		WHERE g_num = #{g_num}
+	</update>
+
+	<!-- 게임 정보 보기 -->
+	<select id="selectOne" parameterType="Integer" resultType="GameDTO">
+		SELECT *
+		FROM game WHERE g_num = #{g_num}
+	</select>
+
+	<!-- 게임 리스트 -->
+	<select id="selectList" parameterType="HashMap" resultType="GameDTO">
+		SELECT * FROM 
+		(SELECT ROWNUM r, res.* FROM
+		((SELECT *
+		FROM game g INNER JOIN GAMEFILE gf
+		ON g.g_num = gf.g_num AND gf.kind = 'main'
+		<where>
+			<if test="searchInfo.genre != null and searchInfo.genre != ''">
+				AND g.genre LIKE '%'||#{searchInfo.genre}||'%'
+			</if>
+			<if test="searchInfo.kind != null">
+				AND
+				<choose>
+					<when test="searchInfo.kind == 'publisher'">LOWER(g.publisher)</when>
+					<when test="searchInfo.kind == 'developer'">LOWER(g.developer)</when>
+					<otherwise>LOWER(g.g_name)</otherwise>
+				</choose>
+				LIKE '%'||#{searchInfo.search}||'%'
+			</if>
+		</where>
+		ORDER BY g.g_date DESC) res))
+		WHERE r BETWEEN #{pager.startRow} AND #{pager.endRow}
+	</select>
+	
+	<!-- 게임 수량 -->
+	<select id="getTotalRow" parameterType="GameSearchInfo" resultType="Integer">
+		SELECT COUNT(g_num) FROM game
+ 		<where>
+ 			<if test="genre != null" >
+ 				genre LIKE '%'||#{genre}||'%'
+ 			</if>
+			<if test="kind != null">
+				AND
+				<choose>
+					<when test="kind == 'publisher'">LOWER(publisher)</when>
+					<when test="kind == 'developer'">LOWER(developer)</when>
+					<otherwise>LOWER(g_name)</otherwise>
+				</choose>
+				LIKE '%'||#{search}||'%'
+			</if>
+		</where>
+	</select>
+
+	<!-- 게임 등록 -->
+	<insert parameterType="GameDTO" id="insert">
+		<selectKey order="BEFORE" resultType="Integer" keyProperty="g_num">
+			SELECT GAME_SEQ.NEXTVAL FROM dual
+		</selectKey>
+		INSERT INTO game (g_num, g_name, price, g_info,
+			developer, publisher, genre, g_date, downcnt, recommend, steamAppId)
+		VALUES(#{g_num}, #{g_name}, #{price}, #{g_info},
+			#{developer}, #{publisher}, #{genre}, #{g_date}, #{downcnt}, 0, #{steamAppId})
+	</insert>
+	
+</mapper>

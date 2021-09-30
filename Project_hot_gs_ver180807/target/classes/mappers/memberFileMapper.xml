@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="memberFileMapper">
+ 
+ 	<insert id="insert" parameterType="MemberDTO">
+		INSERT INTO memberfile (mf_num, email, fname, oname)
+		VALUES (FILE_SEQ.NEXTVAL, #{email}, #{fname}, #{oname})
+	</insert>
+
+	<update id="imgUpdate" parameterType="MemberFileDTO">
+		update memberfile set fname= #{fname}, oname= #{oname} where email= #{email}
+	</update>
+	
+	<select id="selimg" parameterType="String" resultType="MemberFileDTO">
+		select * from memberfile where email = #{email}
+	</select>
+ </mapper>

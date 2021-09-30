@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="gameFileMapper">
+
+	<!-- fname으로 서브 이미지 삭제 -->
+	<delete id="subImgDeleteWithFname" parameterType="String">
+		DELETE gamefile WHERE fname = #{fname}
+	</delete>
+
+	<!-- g_num으로 이미지 삭제 -->
+	<delete id="imgsDeleteWithG_num" parameterType="Integer">
+		DELETE gamefile WHERE g_num = #{g_num}
+	</delete>
+	
+	<!-- gf_num으로 oname과 fname 수정 -->
+	<update id="imgUpdate" parameterType="GameFileDTO">
+		UPDATE gamefile SET oname = #{oname}, fname = #{fname} WHERE gf_num = #{gf_num}
+	</update>
+	
+	<!-- g_num으로 이미지 검색 -->
+	<select id="selectImgsWithG_num" parameterType="Integer" resultType="GameFileDTO">
+		SELECT * FROM gamefile WHERE g_num = #{g_num}
+	</select>
+
+	<!-- kind와 g_num으로 이미지 검색 -->
+	<select id="selectImgsWithKind" parameterType="GameFileDTO" resultType="GameFileDTO">
+		SELECT * FROM gamefile
+		WHERE g_num = #{g_num}
+		<if test="kind != null">
+			AND kind = #{kind}
+		</if>
+	</select>
+	
+	<!-- gf_num으로 이미지 검색 -->
+	<select id="selectImgWithGf_num" parameterType="Integer" resultType="GameFileDTO">
+		SELECT * FROM gamefile WHERE gf_num = #{gf_num}
+	</select>
+
+	<!-- 서브 이미지 갯수 -->
+	<select id="subImgCnt" parameterType="Integer" resultType="Integer">
+		SELECT COUNT(gf_num) FROM gamefile WHERE g_num = #{g_num} AND kind = 'sub'
+	</select>
+	
+	<!-- 이미지 정보 입력 -->
+	<insert id="imgInsert" parameterType="GameDTO">
+		INSERT INTO gamefile (gf_num, g_num, fname, oname, kind)
+		VALUES (FILE_SEQ.NEXTVAL, #{g_num}, #{fname}, #{oname}, #{kind})
+	</insert>
+	
+</mapper>

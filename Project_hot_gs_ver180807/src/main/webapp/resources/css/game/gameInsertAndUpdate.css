@@ -1,0 +1,75 @@
+@charset "UTF-8";
+
+#mainImg {
+	display: none;
+}
+
+.subImages {
+	display: none;
+}
+
+.gameSubImg {
+	font-size: 13px;
+}
+
+.setMainImgBtn {
+	font-size: 14px;
+	background-color: #fe4c50;
+	border: 1px solid #fe4c50;
+	color: white;
+	width: 26%;
+	height: 40px;
+	border-radius: 7px;
+}
+
+.setMainImgBtn:hover {
+	background-color: white;
+	color: #fe4c50;
+	font-weight: bold;
+}
+
+#genreCheckbox {
+	display: none;
+}
+
+.addSubImgBtn:hover {
+	background-color: white;
+	color: #fe4c50;
+	font-weight: bold;
+}
+
+.addSubImgBtn {
+	font-size: 14px;
+	background-color: #fe4c50;
+	border: 1px solid #fe4c50;
+	color: white;
+	width: 26%;
+	height: 40px;
+	border-radius: 7px;
+}
+
+.subImgDeleteIcon {
+	margin-right: 1%;
+}
+
+.gameBtnDiv {
+	text-align: center;
+}
+
+.gameBtn {
+	width: 80px;
+	margin: 0 1%;
+	font-size: 14px;
+	background-color: #fe4c50;
+	border: 1px solid #fe4c50;
+	color: white;
+	height: 34px;
+	border-radius: 7px;
+}
+
+.gameBtn:hover {
+	color: #fe4c50;
+	background-color: white;
+	border: 1px solid #fe4c50;
+	text-decoration: none;
+}

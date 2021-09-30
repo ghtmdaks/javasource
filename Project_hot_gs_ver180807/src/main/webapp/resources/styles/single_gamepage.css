@@ -1,0 +1,141 @@
+@charset "UTF-8";
+
+#review_form>div {
+	margin-bottom: 20px !important;
+}
+
+.tabs>li>span {
+	font-size: 2rem !important;
+}
+
+.product_details {
+	text-align: center;
+}
+
+.dropdown {
+	float: right;
+}
+
+.red_button a {
+	color: white !important;
+}
+
+.tooltipBox {
+	display: inline-block;
+}
+
+.subtitle {
+	float: left;
+	display: inline-block;
+}
+
+.subvalue {
+	display: inline-block;
+}
+
+.tooltip-inner {
+	background-color: white;
+}
+
+#titleImg {
+	margin-bottom: 9% !important;
+}
+
+.subtitleBox {
+	min-height: 74px;
+}
+
+.product_price {
+	margin-top: 0 !important;
+	margin-bottom: 7.5%;
+}
+
+.btn-primary {
+	background-color: #fe4c50 !important;
+	border-color: #fe4c50 !important;
+	font-size: 0.9rem !important;
+}
+
+.dropdown-menu {
+	background-color: #fe4c50 !important;
+	color: white !important;
+	font-size: 0.9rem !important;
+}
+
+.dropdown-item {
+	color: white !important;
+	font-size: 0.9rem !important;
+}
+
+.reviewMoreBtn {
+	background-color: #fe4c50;
+	padding: 0% 10%;
+	border: none;
+	border-radius: 10%;
+	font-size: 0.8rem;
+	color: white;
+}
+
+.dropdown-item:focus, .dropdown-item:hover {
+	color: #fe4c50 !important;
+	background-color: white;
+	border-radius: 10px !important;
+}
+
+.dropdown-item:active {
+	background-color: white !important;
+	color: #fe4c50 !important;
+}
+
+.timeSale {
+	color: #fe4c50;;
+}
+
+.review_submit_btn {
+	margin-top: 1%;
+}
+
+.saleData {
+	margin-top: 0 !important;
+	padding: 13px 12px 6px 20px !important;
+	height: 45px !important;
+}
+
+.dropdown>button:first-child {
+	color: white !important;
+	font-size: 0.9rem !important;
+	background-color: #fe4c50 !important;
+}
+.dropdown>button:first-child:hover {
+	text-decoration: none;
+	color: #fe4c50 !important;
+	background-color: #ffffff !important;
+}
+
+
+.modal-body>input[type="button"] {
+   color: #ffffff;
+   background-color: #fe4c50;
+   border: 1px solid #fe4c50;
+}
+
+.modal-body>input[type="button"]:hover {
+   color: #fe4c50;
+   background-color: #ffffff;
+   border: 1px solid #fe4c50;
+   text-decoration: none;
+}
+
+.modal-footer>button {
+   color: #fe4c50;
+   background-color: #ffffff;
+   border: 1px solid #fe4c50;
+}
+
+.modal-footer>button:hover {
+   text-decoration: none;
+   color: #ffffff !important;
+   background-color: #fe4c50 !important;
+   border: 1px solid #fe4c50;
+   text-decoration: none;
+}

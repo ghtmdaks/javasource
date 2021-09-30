@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+	
+		<typeAlias type="java.lang.Integer" alias="Integer" />
+		<typeAlias type="java.lang.String" alias="String" />
+		<typeAlias type="java.util.HashMap" alias="HashMap"/>
+		<typeAlias type="java.util.List" alias="List" />
+		
+		<typeAlias type="com.hot.util.page.Pager" alias="Pager" />
+		<typeAlias type="com.hot.util.page.GameSearchInfo" alias="GameSearchInfo" />
+		<typeAlias type="com.hot.util.page.BoardSearchInfo" alias="BoardSearchInfo" />
+		
+		<typeAlias type="com.hot.member.MemberDTO" alias="MemberDTO"/>
+		
+		<typeAlias type="com.hot.game.GameDTO" alias="GameDTO" />
+  		<typeAlias type="com.hot.review.ReviewDTO" alias="ReviewDTO"/>
+		
+		<typeAlias type="com.hot.board.BoardDTO" alias="BoardDTO" />
+		<typeAlias type="com.hot.board.notice.NoticeDTO" alias="NoticeDTO"/>
+		
+		<typeAlias type="com.hot.orders.OrdersDTO" alias="OrdersDTO"/>
+		
+  		<typeAlias type="com.hot.member.file.MemberFileDTO" alias="MemberFileDTO"/>
+		<typeAlias type="com.hot.game.file.GameFileDTO" alias="GameFileDTO" />
+		<typeAlias type="com.hot.board.file.BoardFileDTO" alias="BoardFileDTO" />
+		
+		
+	</typeAliases>
+</configuration>

@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+.page-link {
+	color: #fe4c50;
+	border-color: #fe4c50;
+}
+
+.page-item.active .page-link {
+	background-color: #fe4c50;
+	border-color: #fe4c50;
+	font-weight: bold;
+}
+
+.page-link:hover, .page-link:visited {
+	background-color: #fe4c50;
+	border-color: #fe4c50;
+	color: #ffffff;
+}
+
+.gameInsertbtn {
+	color: #ffffff;
+	border: 1px solid #fe4c50;
+	background-color: #fe4c50;
+	padding: 0.5% 1%;
+	float: right;
+	border-radius: 100px;
+	margin-bottom: 5%;
+	display: block;
+}
+.gameInsertbtn:hover {
+	color: #fe4c50;
+	background-color: #ffffff;
+}
+.gameInsertbtndiv {
+	margin-bottom: 5%;
+}

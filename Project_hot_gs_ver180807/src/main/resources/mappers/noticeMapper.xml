@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="noticeMapper">
+
+	<select id="homeNoticeList" resultType="NoticeDTO">
+		SELECT * FROM
+		(SELECT ROWNUM r, n.* FROM
+		((SELECT * FROM notice ORDER BY reg_date DESC) n))
+		WHERE r BETWEEN 1 AND 3
+	</select>
+
+	<update id="hitUpdate" parameterType="Integer">
+		UPDATE notice SET hit = hit + 1 WHERE b_num = #{b_num}
+	</update>
+
+	<update id="update" parameterType="NoticeDTO">
+		UPDATE notice
+		SET title = #{title}, contents = #{contents}
+		WHERE b_num = #{b_num}
+	</update>
+
+	<delete id="delete" parameterType="Integer">
+		DELETE notice WHERE b_num = #{b_num}
+	</delete>
+
+	<select id="selectList" parameterType="HashMap" resultType="NoticeDTO">
+		SELECT * FROM
+		(SELECT ROWNUM r, res.* FROM
+		((SELECT * FROM
+		notice INNER JOIN member
+		ON notice.email = member.email
+		<where>
+			<if test="searchInfo.kind != null">
+				AND
+				<choose>
+					<when test="searchInfo.kind == 'nickname'">LOWER(member.nickname)</when>
+					<when test="searchInfo.kind == 'contents'">LOWER(notice.contents)</when>
+					<otherwise>LOWER(notice.title)</otherwise>
+				</choose>
+				LIKE '%'||#{searchInfo.search}||'%'
+			</if>
+		</where>
+		ORDER BY notice.reg_date DESC) res))
+		WHERE r BETWEEN #{pager.startRow} AND #{pager.endRow}
+	</select>
+
+	<select id="getCount" parameterType="BoardSearchInfo" resultType="Integer">
+		SELECT COUNT(b_num) FROM
+		notice INNER JOIN member
+		ON notice.email = member.email
+		<where>
+			<if test="kind != null">
+				<choose>
+					<when test="kind == 'nickname'">LOWER(member.nickname)</when>
+					<when test="kind == 'contents'">LOWER(notice.contents)</when>
+					<otherwise>LOWER(notice.title)</otherwise>
+				</choose>
+				LIKE '%'||#{search}||'%'
+			</if>
+		</where>
+	</select>
+
+	<select id="selectOne" parameterType="Integer"
+		resultType="NoticeDTO">
+		SELECT * FROM notice WHERE b_num = #{b_num}
+	</select>
+
+	<insert id="insert" parameterType="NoticeDTO">
+		<selectKey order="BEFORE" resultType="Integer" keyProperty="b_num">
+			SELECT BOARD_SEQ.NEXTVAL FROM dual
+		</selectKey>
+		INSERT INTO notice (b_num, email, title, contents, hit, reg_date)
+		VALUES(#{b_num}, #{email}, #{title}, #{contents}, 0, SYSDATE)
+	</insert>
+</mapper>

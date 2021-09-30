@@ -1,0 +1,102 @@
+@charset "UTF-8";
+
+/* 파일 */
+.noticeFile {
+	font-size: 14px;
+}
+
+.fileAddBtn {
+	width: 113px;
+	margin: 0 1%;
+	font-size: 14px;
+	background-color: #fe4c50;
+	border: 1px solid #fe4c50;
+	color: white;
+}
+
+.fileDeleteIcon {
+	margin: 0 8px 6px 0;
+}
+
+/* 버튼 */
+.noticeBtnDiv {
+	text-align: center;
+}
+
+.noticeWriteBtn {
+	width: 80px;
+	margin: 0 1%;
+	font-size: 14px;
+	background-color: #fe4c50;
+	border: 1px solid #fe4c50;
+	color: white;
+}
+
+.noticeCancelBtn {
+	width: 80px;
+	margin: 0 1%;
+	font-size: 14px;
+	background-color: #fe4c50;
+	border: 1px solid #fe4c50;
+	color: white;
+}
+
+.noticeWriteBtn:active {
+	width: 80px !important;
+	margin: 0 1% !important;
+	font-size: 14px !important;
+	background-color: white !important;
+	border: 1px solid #fe4c50 !important;
+	color: #fe4c50 !important;
+	text-decoration: none;
+}
+
+.noticeWriteBtn:hover, .noticeWriteBtn:focus {
+	width: 80px;
+	margin: 0 1%;
+	font-size: 14px;
+	background-color: white;
+	border: 1px solid #fe4c50;
+	color: #fe4c50;
+		text-decoration: none;
+}
+
+.fileAddBtn:active {
+	width: 113px !important;
+	margin: 0 1% !important;
+	font-size: 14px !important;
+	background-color: white !important;
+	border: 1px solid #fe4c50 !important;
+	color: #fe4c50 !important;
+		text-decoration: none;
+}
+
+.fileAddBtn:hover, .fileAddBtn:focus {
+	width: 113px;
+	margin: 0 1%;
+	font-size: 14px;
+	background-color: white;
+	border: 1px solid #fe4c50;
+	color: #fe4c50;
+		text-decoration: none;
+}
+
+.noticeCancelBtn:active {
+	width: 80px !important;
+	margin: 0 1% !important;
+	font-size: 14px !important;
+	background-color: white !important;
+	border: 1px solid #fe4c50 !important;
+	color: #fe4c50 !important;
+		text-decoration: none;
+}
+
+.noticeCancelBtn:hover, .noticeCancelBtn:focus {
+	width: 80px;
+	margin: 0 1%;
+	font-size: 14px;
+	background-color: white;
+	border: 1px solid #fe4c50;
+	color: #fe4c50;
+		text-decoration: none;
+}

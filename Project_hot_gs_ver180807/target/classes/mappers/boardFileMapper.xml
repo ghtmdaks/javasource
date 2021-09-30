@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boardFileMapper">
+
+	<select id="fileCnt" parameterType="Integer" resultType="Integer">
+		SELECT COUNT(bf_num) FROM boardfile WHERE b_num = #{b_num}
+	</select>
+
+	<delete id="deleteFileWithFname" parameterType="String">
+		DELETE boardfile WHERE fname = #{fname}
+	</delete>
+	
+	<delete id="delteFilesWithB_num" parameterType="Integer">
+		DELETE boardfile WHERE b_num = #{b_num}
+	</delete>
+	
+	<insert id="insert" parameterType="BoardFileDTO">
+		INSERT INTO boardfile
+		VALUES(FILE_SEQ.NEXTVAL, #{b_num}, #{oname}, #{fname})
+	</insert>
+	
+	<select id="selectOne" parameterType="Integer" resultType="BoardFileDTO">
+		SELECT* FROM boardfile WHERE bf_num = #{bf_num}
+	</select>
+	
+	<select id="selectList" parameterType="Integer" resultType="BoardFileDTO">
+		SELECT * FROM boardfile WHERE b_num = #{b_num}
+	</select>
+</mapper>

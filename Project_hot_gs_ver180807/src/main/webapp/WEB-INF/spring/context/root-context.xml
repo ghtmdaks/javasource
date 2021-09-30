@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<!-- MyBatis -->
+	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
+		<property name="username" value="GS" />
+		<property name="password" value="GS" />
+ 		<property name="url" value="jdbc:oracle:thin:@192.168.10.26:1521:xe" />
+<!-- 		<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:xe" /> -->
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+	</bean>
+
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" value="classpath:/mappers/*Mapper.xml" />
+		<property name="configLocation" value="classpath:/mybatis/mybatis-config.xml"></property>
+	</bean>
+
+	<bean class="org.mybatis.spring.SqlSessionTemplate" id="sqlSession">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactoryBean"></constructor-arg>
+	</bean>
+	<!-- *************** -->
+	
+	<!-- Apache Commons File Upload -->
+	<bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
+		<property name="maxUploadSize" value="104857600"></property>
+		<property name="maxUploadSizePerFile" value="20971520"></property>
+		<property name="defaultEncoding" value="UTF-8"></property>
+	</bean>
+	<!-- *************** -->
+	
+	<!-- Transaction -->
+	<bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager" id="transactionManager" >
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<tx:annotation-driven />
+	<!-- *************** -->
+
+	
+	
+		
+</beans>

@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+.gameCategories {
+	margin-top: 2%;
+}
+
+.banner_item {
+	border-radius: 	4px;
+}
+.section_title::after{
+		background: #ffffff;
+}
+.section_title h2{
+	text-decoration: underline;
+	color: #fe4c50;
+}
