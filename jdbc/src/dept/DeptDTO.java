@@ -7,8 +7,8 @@ import lombok.Setter;
 import lombok.ToString;
 
 //테이블 모양과 똑같이 작성
-
 //생성자, getter, setter, toString
+
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
