@@ -9,7 +9,7 @@ public class DeptDAO {
 		try {
 			Class.forName("oracle.jdbc.OracleDriver");
 			
-		} catch (Exception e) {
+		}catch (Exception e) {
 			e.printStackTrace(); 
 		}
 	}
@@ -22,7 +22,7 @@ public class DeptDAO {
 		
 		try {
 			con = DriverManager.getConnection(url, user, password);
-		} catch (SQLException e) {
+		}catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return con;
