@@ -10,7 +10,7 @@ public class DeptDAO {
 			Class.forName("oracle.jdbc.OracleDriver");
 			
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.printStackTrace(); 
 		}
 	}
 	
