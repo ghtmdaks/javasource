@@ -19,7 +19,7 @@ public class DeptDAO {
 		String user = "c##scott";
 		String password = "tiger";
 		Connection con = null;
-		
+		 
 		try {
 			con = DriverManager.getConnection(url, user, password);
 		}catch (SQLException e) {
