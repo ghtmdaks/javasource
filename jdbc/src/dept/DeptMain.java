@@ -62,10 +62,10 @@ public class DeptMain {
 			break;
 		case 4:
 			System.out.println("\n부서 수정");
-			System.out.print("수정 부서 번호 : ");
-			int updateDepNo = sc.nextInt();
 			System.out.print("수정 부서명 : ");
 			String updateDname = sc.next();
+			System.out.print("수정 부서 번호 : ");
+			int updateDepNo = sc.nextInt();
 			System.out.println(dao.update(updateDname, updateDepNo)?"부서 수정 성공" : "실패");
 			System.out.println();
 			
@@ -87,5 +87,4 @@ public class DeptMain {
 		}
 		}
 	}
-
 }
